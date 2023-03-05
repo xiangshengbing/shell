@@ -1,0 +1,34 @@
+正则符号                 描述
+  ^                  匹配行首
+  $                  匹配行尾
+  []                 集合，匹配集合中的任意单个字符
+  [^]                对集合取反
+  .                  匹配任意单个字符
+  *                  匹配前一个字符任意多次 //不允许单独使用
+  \{n,m\}            匹配前一个字符n到m次
+  \{n\}              匹配前一个字符n次
+  \{n,\}             匹配前一个字符n次及以上
+  \(\)               保留
+
+扩展正则表达式：
+  +                  最少匹配一次
+  ？                 最多匹配一次
+  {n,m}              匹配n到m次
+ （）                组合为整体，保留
+  |                  或者
+  \b                 单词边界      \b  匹配的是 空，空格，特殊符号
+
+
+
+[root@localhost opt]# grep -n ^root /etc/passwd             //匹配以root开头的行
+1:root:x:0:0:root:/root:/bin/bash
+
+[root@localhost opt]# grep -n bash$ /etc/passwd             //匹配以bash结尾的行
+1:root:x:0:0:root:/root:/bin/bash
+43:xsb:x:1000:1000::/home/xsb:/bin/bash
+
+[root@localhost opt]# grep  bas[hm] /etc/passwd             //匹配包含bash或者basm的行
+root:x:0:0:root:/root:/bin/bash
+xsb:x:1000:1000::/home/xsb:/bin/bash
+
+[root@localhost opt]# grep  bas[^hm] /etc/passwd             //匹配不包含bash或者basm的，且存在bas的行
